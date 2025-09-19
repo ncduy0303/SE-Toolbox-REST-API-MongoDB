@@ -98,7 +98,7 @@ const AddressCardList = ({ showForm, onFormClose }) => {
     <div className="w-full">
       {addresses.length === 0 ? (
         <div className="text-center py-8 text-gray-500">
-          No addresses found. Click "Add address" to create your first address.
+          No addresses found. Click &quot;Add address&quot; to create your first address.
         </div>
       ) : (
         addresses.map((address) => (

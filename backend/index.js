@@ -7,8 +7,17 @@ connectDB(); // connect to MongoDB database
 const app = express();
 
 // allow cross-origin requests to reach the Expres.js server
-// from localhost:3000, which is your frontend domain
-app.use(cors({ origin: 'http://localhost:3000' }));
+// Configure CORS for Docker environment
+const corsOptions = {
+  origin: [
+    'http://localhost:3000',
+    'http://frontend:3000',
+    'http://127.0.0.1:3000'
+  ],
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 
 // allow JSON data in request body to be parsed
 app.use(express.json());
