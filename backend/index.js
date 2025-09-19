@@ -1,19 +1,20 @@
 const express = require('express');
 const cors = require('cors');
+const dotenv = require('dotenv').config();
+const connectDB = require('./config/db');
 
+connectDB(); // connect to MongoDB database
 const app = express();
 
 // allow cross-origin requests to reach the Expres.js server
 // from localhost:3000, which is your frontend domain
-
 app.options('*', cors({
     origin: 'http://localhost:3000',
     optionsSuccessStatus: 200
 }));
 app.use(cors());
 
-const PORT = 8080;
-
+const PORT = process.env.PORT || 8080;
 // configure the Express.js application to run at port 8080
 // since you will be running this application on your computer (localhost),
 // the backend server will be running at http://localhost:8080
