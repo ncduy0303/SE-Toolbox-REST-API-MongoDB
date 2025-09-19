@@ -8,11 +8,12 @@ const app = express();
 
 // allow cross-origin requests to reach the Expres.js server
 // from localhost:3000, which is your frontend domain
-app.options('*', cors({
-    origin: 'http://localhost:3000',
-    optionsSuccessStatus: 200
-}));
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:3000' }));
+
+// allow JSON data in request body to be parsed
+app.use(express.json());
+// allow URL-encoded data in request body to be parsed
+app.use(express.urlencoded({ extended: false }));
 
 const PORT = process.env.PORT || 8080;
 // configure the Express.js application to run at port 8080
@@ -27,6 +28,10 @@ app.listen(PORT, () => {
 app.get('/', (req, res) => {
     res.json({ message: 'Hello World' });
 });
+
+// use the address router to handle requests
+// at http://localhost:8080/api/addresses
+app.use('/api/addresses', require('./routes/addressRoutes'));
 
 // export Express.js application to be used elsewhere
 module.exports = app;
