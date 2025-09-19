@@ -13,7 +13,7 @@ const addresses = [
 // render list of AddressCard components
 const AddressCardList = () => {
   return (
-    <div className="flex-1 max-w-3xl">
+    <div className="w-full">
       {addresses.map((address) => (
         <AddressCard key={address.id} address={address} />
       ))}
